@@ -1,3 +1,6 @@
-#SPDX-License-Identifier: MIT-0
 ---
 # tasks file for role-media_server
+
+- name: Setup the docker socket-proxy
+  ansible.builtin.include_tasks:
+    - socket-proxy.yml
