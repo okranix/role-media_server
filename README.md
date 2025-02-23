@@ -42,7 +42,7 @@ Here’s a quick rundown of the services you can configure with this role, along
 
 - [Portainer](https://www.portainer.io/) WebUI for managing your docker containers.
 - [Dozzle](https://dozzle.dev/) Real-time Logging & Monitoring captures real-time Docker container logs, enabling quick and efficient issue diagnosis.
-
+- [socket-proxy](https://github.com/Tecnativa/docker-socket-proxy)This is a security-enhanced proxy for the Docker Socket.
 
 License
 -------
