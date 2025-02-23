@@ -45,6 +45,7 @@ Here’s a quick rundown of the services you can configure with this role, along
 - [Dozzle](https://dozzle.dev/) Real-time Logging & Monitoring captures real-time Docker container logs, enabling quick and efficient issue diagnosis.
 - [socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) This is a security-enhanced proxy for the Docker Socket.
 - [Homepage](https://github.com/gethomepage/homepage) A modern, fully static, fast, secure fully proxied, highly customizable application dashboard with integrations for over 100 services and translations into multiple languages.
+- [Emby](https://emby.media/index.html) Media server
 
 License
 -------
