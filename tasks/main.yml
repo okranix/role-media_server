@@ -12,3 +12,6 @@
 
 - name: Setup portainer
   ansible.builtin.include_tasks: portainer.yml
+
+- name: Setup dozzle
+  ansible.builtin.include_tasks: dozzle.yml

@@ -1,0 +1,17 @@
+- name: Setup dozzle
+  community.docker.docker_container:
+    name: dozzle
+    image: amir20/dozzle:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - name: socket_proxy
+    ports:
+      - "8081:8080"
+    env:
+      DOZZLE_LEVEL: "info"
+      DOZZLE_TAILSIZE: "300"
+      DOZZLE_FILTER: "status=running"
+      DOCKER_HOST: "tcp://socket-proxy:2375"
+  ignore_errors: "{{ ansible_check_mode }}"
