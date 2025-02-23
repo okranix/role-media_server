@@ -8,7 +8,7 @@ Requirements
 
 This role requires the ansible docker community module.
 
-   ansible-galaxy collection install community.docker
+    ansible-galaxy collection install community.docker
 
 Role Variables
 --------------
