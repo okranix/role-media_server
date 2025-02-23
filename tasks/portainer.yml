@@ -4,7 +4,7 @@
     path: "{{ media_server_dir }}/appdata/portainer/data"
     state: directory
     owner: "{{ media_server_username }}"
-    group: docker
+    group: "{{ media_server_groupname }}"
     mode: "0750"
 
 - name: Setup portainer
