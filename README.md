@@ -1,7 +1,7 @@
 media_server
 =========
 
-This role sets up the arr-suite and media server in docker.
+This role sets up a media server and supporting services as docker containers.
 
 Requirements
 ------------
@@ -30,9 +30,19 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+    ---
+    - name: Media server setup
+    hosts: docker_hosts
+    roles:
+        - role: role-media_server
+
+Service Descriptions
+--------------------
+Here’s a quick rundown of the services you can configure with this role, along with links to their official sites:
+
+- [Portainer](https://www.portainer.io/) WebUI for managing your docker containers.
+- [Dozzle](https://dozzle.dev/) Real-time Logging & Monitoring captures real-time Docker container logs, enabling quick and efficient issue diagnosis.
+
 
 License
 -------
