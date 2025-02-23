@@ -1,0 +1,47 @@
+---
+- name: Setup docker socket-proxy
+  community.docker.docker_container:
+    name: socket-proxy
+    image: lscr.io/linuxserver/socket-proxy:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - name: socket_proxy
+        ipv4_address: "10.0.0.254"
+    ports:
+      - "127.0.0.1:2375:2375"
+    privileged: true
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    env:
+      LOG_LEVEL: "info" # debug,info,notice,warning,err,crit,alert,emerg
+      # 0 to revoke access.
+      # 1 to grant access.
+      # Granted by default
+      EVENTS: "1"
+      PING: "1"
+      VERSION: "1"
+      # Revoked by default
+      AUTH: "0"
+      SECRETS: "0"
+      POST: "1" # Watchtower
+      # Not always needed
+      BUILD: "0"
+      COMMIT: "0"
+      CONFIGS: "0"
+      CONTAINERS: "1" # Traefik, portainer, etc.
+      DISTRIBUTION: "0"
+      EXEC: "0"
+      IMAGES: "1" # Portainer
+      INFO: "1" # Portainer
+      NETWORKS: "1" # Portainer
+      NODES: "0"
+      PLUGINS: "0"
+      SERVICES: "1" # Portainer
+      SESSION: "0"
+      SWARM: "0"
+      SYSTEM: "0"
+      TASKS: "1" # Portainer
+      VOLUMES: "1" # Portainer
+  ignore_errors: "{{ ansible_check_mode }}"

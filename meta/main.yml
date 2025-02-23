@@ -1,8 +1,8 @@
-#SPDX-License-Identifier: MIT-0
 galaxy_info:
-  author: your name
-  description: your role description
-  company: your company (optional)
+  role_name: media_server
+  author: Luca Rizzitano
+  namespace: okranix
+  description: Sets up my media server in docker
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -15,12 +15,17 @@ galaxy_info:
   # - GPL-3.0-only
   # - Apache-2.0
   # - CC-BY-4.0
-  license: license (GPL-2.0-or-later, MIT, etc)
+  license: MIT
 
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
+
+  platforms:
+    - name: EL
+      versions:
+        - all
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes

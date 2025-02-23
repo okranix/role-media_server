@@ -1,6 +1,11 @@
 ---
 # tasks file for role-media_server
+- name: Setup socket-proxy docker network
+  community.docker.docker_network:
+    name: socket_proxy
+    driver: bridge
+    ipam_config:
+      - subnet: 10.0.0.0/24
 
 - name: Setup the docker socket-proxy
-  ansible.builtin.include_tasks:
-    - socket-proxy.yml
+  ansible.builtin.include_tasks: socket-proxy.yml
