@@ -1,7 +1,7 @@
-Role Name
+media_server
 =========
 
-A brief description of the role goes here.
+This role sets up the arr-suite and media server in docker.
 
 Requirements
 ------------
@@ -16,7 +16,7 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role requires docker to be setup as in role-docker_setup.
 
 Example Playbook
 ----------------
@@ -31,8 +31,3 @@ License
 -------
 
 BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
