@@ -1,7 +1,7 @@
 ---
 - name: Ensure homepage appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_dir }}/appdata/homepage"
+    path: "{{ media_server_appdata }}/appdata/homepage"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
@@ -19,7 +19,7 @@
     ports:
       - "3000:3000"
     volumes:
-      - "{{ media_server_dir }}/appdata/homepage:/app/config"
+      - "{{ media_server_appdata }}/appdata/homepage:/app/config"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"

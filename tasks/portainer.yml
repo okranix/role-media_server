@@ -1,7 +1,7 @@
 ---
 - name: Ensure portainer appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_dir }}/appdata/portainer/data"
+    path: "{{ media_server_appdata }}/appdata/portainer/data"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
@@ -20,7 +20,7 @@
     ports:
       - "9001:9000"
     volumes:
-      - "{{ media_server_dir }}/appdata/portainer/data:/data"
+      - "{{ media_server_appdata }}/appdata/portainer/data:/data"
     env:
       TZ: "{{ media_server_tz }}"
   ignore_errors: "{{ ansible_check_mode }}"

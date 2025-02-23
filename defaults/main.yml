@@ -3,3 +3,5 @@
 media_server_tz: Europe/Zurich
 media_server_username: ansible
 media_server_groupname: docker
+media_server_movies: /media/movies
+media_server_tv: /media/tv

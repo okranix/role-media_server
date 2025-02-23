@@ -1,0 +1,35 @@
+---
+- name: Ensure emby appdata directory
+  ansible.builtin.file:
+    path: "{{ media_server_appdata }}/appdata/emby"
+    state: directory
+    owner: "{{ media_server_username }}"
+    group: "{{ media_server_groupname }}"
+    mode: "0750"
+
+- name: Setup emby
+  community.docker.docker_container:
+    name: emby
+    image: emby/embyserver:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - name: socket_proxy
+    ports:
+      - "8096:8096"
+      - "8920:8920"
+      - "1900:1900"
+      - "1901:1901"
+    volumes:
+      - "{{ media_server_appdata }}/appdata/emby:/config"
+      - "{{ media_server_tv }}:/tv"
+      - "{{ media_server_movies }}:/movies"
+    env:
+      TZ: "{{ media_server_tz }}"
+      UID: "{{ uid }}"
+      GID: "{{ gid }}"
+      GIDLIST: "{{ gid }}"
+    devices:
+      - "/dev/dri:/dev/dri"
+  ignore_errors: "{{ ansible_check_mode }}"
