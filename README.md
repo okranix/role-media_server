@@ -15,9 +15,8 @@ Role Variables
 
 | Name                         | Comment                                                   | Default value  |
 |------------------------------|-----------------------------------------------------------|----------------|
-| media_server_dir        | Directory used for docker containers to store their data. Uses the home directory of the user executing the ansible role. | `{{ ansible_facts['env']['HOME'] }}/docker`      |
 | media_server_tz | Timezone for the containers  | `Europe/Zurich` |
-| media_server_username | Files and directories will be owned by this user. | `ansible` |
+| media_server_username | Files and directories will be owned by this user. The media_server_dir will also be setup in this users home directory as `media_server_username/docker`. Some containers will be started using this users UID & GID. | `ansible` |
 | media_server_groupname | Files and directories will be owned by this group. |`docker`|
 
 Dependencies

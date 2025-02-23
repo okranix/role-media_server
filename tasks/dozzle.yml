@@ -1,3 +1,4 @@
+---
 - name: Setup dozzle
   community.docker.docker_container:
     name: dozzle

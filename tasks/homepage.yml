@@ -1,0 +1,27 @@
+---
+- name: Ensure homepage appdata directory
+  ansible.builtin.file:
+    path: "{{ media_server_dir }}/appdata/homepage"
+    state: directory
+    owner: "{{ media_server_username }}"
+    group: "{{ media_server_groupname }}"
+    mode: "0750"
+
+- name: Setup homepage
+  community.docker.docker_container:
+    name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - name: socket_proxy
+    ports:
+      - "3000:3000"
+    volumes:
+      - "{{ media_server_dir }}/appdata/homepage:/app/config"
+    env:
+      TZ: "{{ media_server_tz }}"
+      PUID: "{{ uid }}"
+      PGID: "{{ gid }}"
+  ignore_errors: "{{ ansible_check_mode }}"

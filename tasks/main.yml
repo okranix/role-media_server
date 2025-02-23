@@ -7,6 +7,33 @@
     ipam_config:
       - subnet: 10.0.0.0/24
 
+- name: Get UID of media_server_username
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ media_server_username }}"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Set UID var
+  ansible.builtin.set_fact:
+    uid: "{{ getent_passwd[media_server_username][1] }}"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Set media_server_dir based on media_server_username var
+  ansible.builtin.set_fact:
+    media_server_dir: "{{ getent_passwd[media_server_username][4] }}/docker"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Get GID of media_server_groupname
+  ansible.builtin.getent:
+    database: group
+    key: "{{ media_server_username }}"
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Set GID var
+  ansible.builtin.set_fact:
+    gid: "{{ getent_group[media_server_username][1] }}"
+  ignore_errors: "{{ ansible_check_mode }}"
+
 - name: Setup the docker socket-proxy
   ansible.builtin.include_tasks: socket-proxy.yml
 
@@ -15,3 +42,6 @@
 
 - name: Setup dozzle
   ansible.builtin.include_tasks: dozzle.yml
+
+- name: Setup homepage
+  ansible.builtin.include_tasks: homepage.yml
