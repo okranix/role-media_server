@@ -1,8 +1,11 @@
 ---
 - name: Ensure portainer appdata directory
   ansible.builtin.file:
-    path: "{{ docker_dir }}/appdata/portainer/data"
+    path: "{{ media_server_dir }}/appdata/portainer/data"
     state: directory
+    owner: "{{ media_server_username }}"
+    group: docker
+    mode: "0750"
 
 - name: Setup portainer
   community.docker.docker_container:
@@ -12,12 +15,12 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - socket_proxy
+      - name: socket_proxy
     command: -H tcp://socket-proxy:2375
     ports:
       - "9001:9000"
     volumes:
-      - "{% raw %}{{ docker_dir }}/appdata/portainer/data:/data{% endraw %}"
+      - "{{ media_server_dir }}/appdata/portainer/data:/data"
     env:
-      TZ: "{{ docker_tz }}"
+      TZ: "{{ media_server_tz }}"
   ignore_errors: "{{ ansible_check_mode }}"
