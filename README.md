@@ -13,7 +13,10 @@ This role requires the ansible docker community module.
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Name                         | Comment                                                   | Default value  |
+|------------------------------|-----------------------------------------------------------|----------------|
+| docker_dir        | Directory used for docker containers to store their data. Uses the home directory of the user executing the ansible role. | `{{ ansible_facts['env']['HOME'] }}/docker`      |
+| docker_tz | Timezone for the containers  | `Europe/Zurich` |
 
 Dependencies
 ------------

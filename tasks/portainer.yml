@@ -1,0 +1,23 @@
+---
+- name: Ensure portainer appdata directory
+  ansible.builtin.file:
+    path: "{{ docker_dir }}/appdata/portainer/data"
+    state: directory
+
+- name: Setup portainer
+  community.docker.docker_container:
+    name: portainer-new
+    image: portainer/portainer-ce:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - socket_proxy
+    command: -H tcp://socket-proxy:2375
+    ports:
+      - "9001:9000"
+    volumes:
+      - "{% raw %}{{ docker_dir }}/appdata/portainer/data:/data{% endraw %}"
+    env:
+      TZ: "{{ docker_tz }}"
+  ignore_errors: "{{ ansible_check_mode }}"

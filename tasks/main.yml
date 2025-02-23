@@ -9,3 +9,6 @@
 
 - name: Setup the docker socket-proxy
   ansible.builtin.include_tasks: socket-proxy.yml
+
+- name: Setup portainer
+  ansible.builtin.include_tasks: portainer.yml

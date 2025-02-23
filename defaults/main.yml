@@ -1,2 +1,4 @@
 ---
 # defaults file for role-media_server
+docker_dir: "{{ ansible_facts['env']['HOME'] }}/docker"
+docker_tz: Europe/Zurich
