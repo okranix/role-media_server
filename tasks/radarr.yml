@@ -1,7 +1,7 @@
 ---
 - name: Ensure radarr appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/radarr/downloads"
+    path: "{{ media_server_appdata }}/appdata/radarr"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
@@ -15,12 +15,12 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - name: default
+      - name: service_network
     ports:
       - "7878:7878"
     volumes:
       - "{{ media_server_appdata }}/appdata/radarr:/config"
-      - "{{ media_server_appdata }}/appdata/radarr/downloads:/data/downloads"
+      - "{{ media_server_appdata }}/appdata/sabnzbd/downloads:/data/downloads"
       - "{{ media_server_movies }}:/movies"
       - "{{ media_server_tv }}:/tv"
     env:

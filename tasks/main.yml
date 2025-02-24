@@ -9,7 +9,7 @@
 
 - name: Setup default network
   community.docker.docker_network:
-    name: default
+    name: service_network
     driver: bridge
     ipam_config:
       - subnet: 11.0.0.0/24
@@ -69,3 +69,6 @@
 
 - name: Setup bazarr
   ansible.builtin.include_tasks: bazarr.yml
+
+- name: Setup docker garbage collector
+  ansible.builtin.include_tasks: docker-gc-cron.yml

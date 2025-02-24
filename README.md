@@ -50,6 +50,7 @@ Here’s a quick rundown of the services you can configure with this role, along
 - [sonarr](https://sonarr.tv/) Sonarr is a PVR for Usenet and BitTorrent users.
 - [radarr](https://radarr.video/) Radarr is a movie collection manager for Usenet and BitTorrent users.
 - [bazarr](https://www.bazarr.media/) Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles.
+- [docker-gc-cron](https://github.com/clockworksoul/docker-gc-cron) Docker garbage collector
 
 License
 -------

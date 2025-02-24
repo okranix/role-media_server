@@ -1,7 +1,7 @@
 ---
 - name: Ensure sonarr appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/sonarr/downloads"
+    path: "{{ media_server_appdata }}/appdata/sonarr"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
@@ -15,12 +15,12 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - name: default
+      - name: service_network
     ports:
       - "8989:8989"
     volumes:
       - "{{ media_server_appdata }}/appdata/sonarr:/config"
-      - "{{ media_server_appdata }}/appdata/sonarr/downloads:/data/downloads"
+      - "{{ media_server_appdata }}/appdata/sabnzb/downloads:/data/downloads"
       - "{{ media_server_movies }}:/movies"
       - "{{ media_server_tv }}:/tv"
     env:

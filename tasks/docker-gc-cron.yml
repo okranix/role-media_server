@@ -1,0 +1,20 @@
+---
+- name: Setup docker garbage collector
+  community.docker.docker_container:
+    name: docker-gc-cron
+    image: clockworksoul/docker-gc-cron:latest
+    security_opts:
+      - no-new-privileges:true
+    restart_policy: "unless-stopped"
+    networks:
+      - name: socket_proxy
+    env:
+      CRON: "0 0 0 * * ?" # Every day at midnight
+      FORCE_IMAGE_REMOVAL: "1"
+      FORCE_CONTAINER_REMOVAL: "0"
+      GRACE_PERIOD_SECONDS: "604800"
+      DRY_RUN: "0"
+      CLEAN_UP_VOLUMES: "1"
+      TZ: "{{ media_server_tz }}"
+      DOCKER_HOST: "tcp://socket-proxy:2375"
+  ignore_errors: "{{ ansible_check_mode }}"

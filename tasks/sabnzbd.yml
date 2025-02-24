@@ -15,9 +15,9 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - name: default
+      - name: service_network
     ports:
-      - "8082:8080"
+      - "8888:8080"
     volumes:
       - "{{ media_server_appdata }}/appdata/sabnzbd:/config"
       - "{{ media_server_appdata }}/appdata/sabnzbd/downloads:/data/downloads"

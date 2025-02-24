@@ -15,7 +15,7 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - name: default
+      - name: service_network
     ports:
       - "6767:6767"
     volumes:
