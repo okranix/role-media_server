@@ -46,6 +46,10 @@ Here’s a quick rundown of the services you can configure with this role, along
 - [socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) This is a security-enhanced proxy for the Docker Socket.
 - [Homepage](https://github.com/gethomepage/homepage) A modern, fully static, fast, secure fully proxied, highly customizable application dashboard with integrations for over 100 services and translations into multiple languages.
 - [Emby](https://emby.media/index.html) Media server
+- [sabnzbd](https://sabnzbd.org/) Free and easy binary newsreader
+- [sonarr](https://sonarr.tv/) Sonarr is a PVR for Usenet and BitTorrent users.
+- [radarr](https://radarr.video/) Radarr is a movie collection manager for Usenet and BitTorrent users.
+- [bazarr](https://www.bazarr.media/) Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles.
 
 License
 -------
