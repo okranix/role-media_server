@@ -1,25 +1,28 @@
 ---
-- name: Ensure homepage appdata directory
+- name: Ensure sonarr appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/homepage"
+    path: "{{ media_server_appdata }}/appdata/sonarr/downloads"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
     mode: "0750"
 
-- name: Setup homepage
+- name: Setup sonarr
   community.docker.docker_container:
-    name: homepage
-    image: ghcr.io/gethomepage/homepage:latest
+    name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest
     security_opts:
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
       - name: default
     ports:
-      - "3000:3000"
+      - "8989:8989"
     volumes:
-      - "{{ media_server_appdata }}/appdata/homepage:/app/config"
+      - "{{ media_server_appdata }}/appdata/sonarr:/config"
+      - "{{ media_server_appdata }}/appdata/sonarr/downloads:/data/downloads"
+      - "{{ media_server_movies }}:/movies"
+      - "{{ media_server_tv }}:/tv"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"

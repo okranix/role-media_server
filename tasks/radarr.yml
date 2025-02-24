@@ -1,25 +1,28 @@
 ---
-- name: Ensure homepage appdata directory
+- name: Ensure radarr appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/homepage"
+    path: "{{ media_server_appdata }}/appdata/radarr/downloads"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
     mode: "0750"
 
-- name: Setup homepage
+- name: Setup radarr
   community.docker.docker_container:
-    name: homepage
-    image: ghcr.io/gethomepage/homepage:latest
+    name: radarr
+    image: lscr.io/linuxserver/radarr:latest
     security_opts:
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
       - name: default
     ports:
-      - "3000:3000"
+      - "7878:7878"
     volumes:
-      - "{{ media_server_appdata }}/appdata/homepage:/app/config"
+      - "{{ media_server_appdata }}/appdata/radarr:/config"
+      - "{{ media_server_appdata }}/appdata/radarr/downloads:/data/downloads"
+      - "{{ media_server_movies }}:/movies"
+      - "{{ media_server_tv }}:/tv"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"

@@ -15,7 +15,7 @@
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
-      - name: socket_proxy
+      - name: default
     ports:
       - "8096:8096"
       - "8920:8920"

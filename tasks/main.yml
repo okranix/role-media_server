@@ -7,6 +7,13 @@
     ipam_config:
       - subnet: 10.0.0.0/24
 
+- name: Setup default network
+  community.docker.docker_network:
+    name: default
+    driver: bridge
+    ipam_config:
+      - subnet: 11.0.0.0/24
+
 # Set facts ###################################################
 - name: Get UID of media_server_username
   ansible.builtin.getent:
@@ -50,3 +57,15 @@
 
 - name: Setup emby
   ansible.builtin.include_tasks: emby.yml
+
+- name: Setup sabnzbd
+  ansible.builtin.include_tasks: sabnzbd.yml
+
+- name: Setup radarr
+  ansible.builtin.include_tasks: radarr.yml
+
+- name: Setup sonarr
+  ansible.builtin.include_tasks: sonarr.yml
+
+- name: Setup bazarr
+  ansible.builtin.include_tasks: bazarr.yml

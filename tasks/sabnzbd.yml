@@ -1,25 +1,26 @@
 ---
-- name: Ensure homepage appdata directory
+- name: Ensure sabnzbd appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/homepage"
+    path: "{{ media_server_appdata }}/appdata/sabnzbd/downloads"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
     mode: "0750"
 
-- name: Setup homepage
+- name: Setup sabnzbd
   community.docker.docker_container:
-    name: homepage
-    image: ghcr.io/gethomepage/homepage:latest
+    name: sabnzbd
+    image: lscr.io/linuxserver/sabnzbd:latest
     security_opts:
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
       - name: default
     ports:
-      - "3000:3000"
+      - "8082:8080"
     volumes:
-      - "{{ media_server_appdata }}/appdata/homepage:/app/config"
+      - "{{ media_server_appdata }}/appdata/sabnzbd:/config"
+      - "{{ media_server_appdata }}/appdata/sabnzbd/downloads:/data/downloads"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"

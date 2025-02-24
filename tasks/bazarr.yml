@@ -1,25 +1,27 @@
 ---
-- name: Ensure homepage appdata directory
+- name: Ensure bazarr appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/homepage"
+    path: "{{ media_server_appdata }}/appdata/bazarr"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
     mode: "0750"
 
-- name: Setup homepage
+- name: Setup bazarr
   community.docker.docker_container:
-    name: homepage
-    image: ghcr.io/gethomepage/homepage:latest
+    name: bazarr
+    image: lscr.io/linuxserver/bazarr:latest
     security_opts:
       - no-new-privileges:true
     restart_policy: "unless-stopped"
     networks:
       - name: default
     ports:
-      - "3000:3000"
+      - "6767:6767"
     volumes:
-      - "{{ media_server_appdata }}/appdata/homepage:/app/config"
+      - "{{ media_server_appdata }}/appdata/bazarr:/config"
+      - "{{ media_server_movies }}:/movies"
+      - "{{ media_server_tv }}:/tv"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"
