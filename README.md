@@ -44,7 +44,7 @@ Here’s a quick rundown of the services you can configure with this role, along
 - [Portainer](https://www.portainer.io/) WebUI for managing your docker containers.
 - [Dozzle](https://dozzle.dev/) Real-time Logging & Monitoring captures real-time Docker container logs, enabling quick and efficient issue diagnosis.
 - [socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) This is a security-enhanced proxy for the Docker Socket.
-- [Homepage](https://github.com/gethomepage/homepage) A modern, fully static, fast, secure fully proxied, highly customizable application dashboard with integrations for over 100 services and translations into multiple languages.
+- [Homepage](https://github.com/gethomepage/homepage) A modern, fully static, fast, secure fully proxied, highly customizable application dashboard.
 - [Emby](https://emby.media/index.html) Media server
 - [sabnzbd](https://sabnzbd.org/) Free and easy binary newsreader
 - [sonarr](https://sonarr.tv/) Sonarr is a PVR for Usenet and BitTorrent users.
