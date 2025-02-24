@@ -9,7 +9,7 @@
 
 - name: Setup portainer
   community.docker.docker_container:
-    name: portainer-new
+    name: portainer
     image: portainer/portainer-ce:latest
     security_opts:
       - no-new-privileges:true
@@ -18,7 +18,7 @@
       - name: socket_proxy
     command: -H tcp://socket-proxy:2375
     ports:
-      - "9001:9000"
+      - "9000:9000"
     volumes:
       - "{{ media_server_appdata }}/appdata/portainer/data:/data"
     env:
