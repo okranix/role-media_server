@@ -1,7 +1,7 @@
 ---
 - name: Ensure sabnzbd appdata directory
   ansible.builtin.file:
-    path: "{{ media_server_appdata }}/appdata/sabnzbd/downloads"
+    path: "{{ media_server_appdata }}/appdata/sabnzbd/Downloads"
     state: directory
     owner: "{{ media_server_username }}"
     group: "{{ media_server_groupname }}"
@@ -20,7 +20,9 @@
       - "8888:8080"
     volumes:
       - "{{ media_server_appdata }}/appdata/sabnzbd:/config"
-      - "{{ media_server_appdata }}/appdata/sabnzbd/downloads:/data/downloads"
+      - "{{ media_server_appdata }}/appdata/sabnzbd/Downloads:/incomplete-downloads"
+      - "{{ media_server_tv }}:/downloads/tv"
+      - "{{ media_server_movies }}:/downloads/movies"
     env:
       TZ: "{{ media_server_tz }}"
       PUID: "{{ uid }}"
